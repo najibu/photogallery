@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GalleryController@index');
+Route::resource('gallery', 'GalleryController');
+Route::resource('photos', 'PhotosController');
+
+Route::get('/gallery/show/{id}', 'GalleryController@show');
