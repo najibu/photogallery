@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PhotoGallery | Welcome</title>
     <link rel="stylesheet" href="/css/foundation.css">
-    <link rel="stylesheet" href="/app/foundation.css">
+    <link rel="stylesheet" href="/css/app.css">
   </head>
   <body>
     
@@ -32,6 +32,12 @@
               <span class="title-bar-title">Mike Mikerson</span>
             </div>
           </div>
+
+          @if(Session::has('message'))
+            <div class="alert alert-info">
+              {{Session::get('message')}}
+            </div>
+          @endif
 
           @yield('content')
           
