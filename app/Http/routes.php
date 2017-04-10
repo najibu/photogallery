@@ -11,8 +11,11 @@
 |
 */
 
+// Galleries
 Route::get('/', 'GalleryController@index');
 Route::resource('gallery', 'GalleryController');
-Route::resource('photos', 'PhotosController');
-
 Route::get('/gallery/show/{id}', 'GalleryController@show');
+
+// Photos
+Route::resource('photos', 'PhotosController');
+Route::get('/photo/create/{id}', 'PhotosController@create');
