@@ -55,6 +55,10 @@ class PhotosController extends Controller
     // Show photo details
     public function details($id)
     {
-      die($id);
+      // Get photo
+      $photo = DB::table($this->table)->where('id', $id)->first();
+
+      //Render view
+      return view('photos.details', compact('photo'));
     }
 }
