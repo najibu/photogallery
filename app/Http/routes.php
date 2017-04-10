@@ -11,12 +11,20 @@
 |
 */
 
-// Galleries
-Route::get('/', 'GalleryController@index');
-Route::resource('gallery', 'GalleryController');
-Route::get('/gallery/show/{id}', 'GalleryController@show');
+Route::group(['middleware' => 'web'], function(){
+  // Galleries
+  Route::get('/', 'GalleryController@index');
+  Route::resource('gallery', 'GalleryController');
+  Route::get('/gallery/show/{id}', 'GalleryController@show');
 
-// Photos
-Route::resource('photos', 'PhotosController');
-Route::get('/photo/create/{id}', 'PhotosController@create');
-Route::get('/photo/details/{id}', 'PhotosController@details');
+  // Photos
+  Route::resource('photos', 'PhotosController');
+  Route::get('/photo/create/{id}', 'PhotosController@create');
+  Route::get('/photo/details/{id}', 'PhotosController@details');
+  Route::auth();
+  Route::get('/home', 'HomeController@index');
+
+});
+
+
+

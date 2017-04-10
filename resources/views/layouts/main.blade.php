@@ -18,9 +18,14 @@
             <h5>Mean Menu</h5>
             <ul class="side-nav">
               <li><a href="/">Home</a></li>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/register">Register</a></li>
-              <li><a href="/gallery/create">Create Gallery</a></li>
+              @if(!Auth::check())
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+              @endif
+              @if(Auth::check())
+                <li><a href="/gallery/create">Create Gallery</a></li>
+                <li><a href="/logout">Logout</a></li>
+              @endif
             </ul>
           </div>
         </div>

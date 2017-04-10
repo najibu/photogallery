@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use DB;
+use Auth;
 
 class GalleryController extends Controller
 {
+
     // Set tablename 
     protected $table = 'galleries';
 
@@ -25,6 +27,11 @@ class GalleryController extends Controller
     // Show create form
     public function create()
     {
+      // Check if logged in
+      if (!Auth::check()) {
+        //Redirect 
+        return \Redirect::route('gallery.index');
+      }
       return view('gallery.create');
     }
 
