@@ -9,10 +9,17 @@ use DB;
 
 class GalleryController extends Controller
 {
+    // Set tablename 
+    protected $table = 'galleries';
+
     // List Galleries
     public function index()
     {
-      return view('gallery.index');
+      //Get all galleries 
+      $galleries = DB::table($this->table)->get();
+
+      // Render view
+      return view('gallery.index', compact('galleries'));
     }
 
     // Show create form
@@ -39,7 +46,7 @@ class GalleryController extends Controller
       }
 
       // Insert gallery
-      DB::table('galleries')->insert(
+      DB::table($this->table)->insert(
         [
             'name' => $name, 
             'description' => $description,
@@ -55,6 +62,13 @@ class GalleryController extends Controller
     // Show Gallery photos 
     public function show($id)
     {
-      die($id);
+      //Get gallery 
+      $gallery = DB::table($this->table)->where('id', $id)->first();
+
+      //Get photos
+      $photos = DB::table('photos')->where('gallery_id', $id)->get();
+
+      //Render view
+      return view('gallery/show', compact('gallery', 'photos'));
     }
 }

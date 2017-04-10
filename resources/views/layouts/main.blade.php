@@ -34,7 +34,7 @@
           </div>
 
           @if(Session::has('message'))
-            <div class="alert alert-info">
+            <div class="alert-box" data-alert>
               {{Session::get('message')}}
             </div>
           @endif
